@@ -1,0 +1,17 @@
+{
+  "name": "AmendMaster: India Constitutional Amendments",
+  "short_name": "AmendMaster",
+  "description": "Offline quiz and learning app for all 106 Constitutional Amendments of India.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f8fb",
+  "theme_color": "#3157d5",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

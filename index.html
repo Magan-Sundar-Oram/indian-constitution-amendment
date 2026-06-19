@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>India Constitutional Amendments Quiz</title>
+    <meta name="theme-color" content="#3157d5" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">CA</div>
+          <div>
+            <strong>AmendMaster</strong>
+            <span>India Constitution</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+          <button class="nav-btn" data-view="learn">Learn</button>
+          <button class="nav-btn" data-view="quiz">Quiz</button>
+          <button class="nav-btn" data-view="progress">Progress</button>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle">Dark Mode</button>
+      </aside>
+
+      <main class="main">
+        <header class="mobile-header">
+          <div class="brand">
+            <div class="brand-mark">CA</div>
+            <div>
+              <strong>AmendMaster</strong>
+              <span>106 Acts</span>
+            </div>
+          </div>
+          <button id="theme-toggle-mobile" class="icon-btn" aria-label="Toggle dark mode">Mode</button>
+        </header>
+
+        <section id="dashboard-view" class="view active">
+          <div class="hero-band">
+            <div>
+              <p class="kicker">UPSC, SSC, Banking, Railway, PSC, CDS, CAPF</p>
+              <h1>Master all 106 Constitutional Amendments of India.</h1>
+              <p class="hero-copy">Study amendment facts, practice exam-style questions, review mistakes, and track progress locally on this device.</p>
+            </div>
+            <div class="hero-score">
+              <span id="hero-accuracy">0%</span>
+              <small>Accuracy</small>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card"><span id="total-questions">1060</span><small>Question Bank</small></article>
+            <article class="metric-card"><span id="amendment-total">106</span><small>Amendments</small></article>
+            <article class="metric-card"><span id="attempted-count">0</span><small>Attempted</small></article>
+            <article class="metric-card"><span id="xp-count">0</span><small>XP Points</small></article>
+            <article class="metric-card"><span id="streak-count">0</span><small>Learning Streak</small></article>
+          </div>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Daily Challenge</h2>
+                <p>Ten mixed questions from landmark and frequently asked amendments.</p>
+              </div>
+              <button class="primary-btn" data-start-mode="daily">Start</button>
+            </div>
+            <div class="progress-line"><span id="daily-progress"></span></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Achievements</h2>
+                <p>Badges unlock as you study, score, and return.</p>
+              </div>
+            </div>
+            <div id="badges" class="badge-grid"></div>
+          </section>
+        </section>
+
+        <section id="learn-view" class="view">
+          <div class="section-title">
+            <div>
+              <p class="kicker">Learning Module</p>
+              <h1>Explore Amendments</h1>
+            </div>
+            <select id="topic-filter" aria-label="Filter by topic">
+              <option value="all">All topics</option>
+            </select>
+          </div>
+          <div class="search-row">
+            <input id="search-input" type="search" placeholder="Search number, year, article, schedule, keyword..." />
+            <button id="bookmarks-only" class="secondary-btn">Bookmarks</button>
+          </div>
+          <div id="amendment-list" class="amendment-list"></div>
+        </section>
+
+        <section id="quiz-view" class="view">
+          <div id="quiz-setup" class="panel quiz-setup active">
+            <div class="section-title compact">
+              <div>
+                <p class="kicker">Quiz Modes</p>
+                <h1>Practice like an exam.</h1>
+              </div>
+            </div>
+            <div class="mode-grid">
+              <button class="mode-card selected" data-mode="practice"><strong>Practice Mode</strong><span>Instant feedback and explanations.</span></button>
+              <button class="mode-card" data-mode="exam"><strong>Exam Mode</strong><span>Timer, no feedback until submit.</span></button>
+              <button class="mode-card" data-mode="amendment"><strong>Amendment-wise</strong><span>Pick any amendment from 1 to 106.</span></button>
+              <button class="mode-card" data-mode="random"><strong>Random Quiz</strong><span>Mixed questions from the full bank.</span></button>
+              <button class="mode-card" data-mode="weak"><strong>Weak Areas</strong><span>Questions from incorrect topics.</span></button>
+              <button class="mode-card" data-mode="revision"><strong>Revision</strong><span>Previously attempted questions.</span></button>
+            </div>
+            <div class="settings-grid">
+              <label>Difficulty
+                <select id="difficulty-select">
+                  <option value="all">All levels</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </select>
+              </label>
+              <label>Round length
+                <select id="length-select">
+                  <option value="10">10 questions</option>
+                  <option value="20">20 questions</option>
+                  <option value="50">50 questions</option>
+                </select>
+              </label>
+              <label>Amendment
+                <select id="amendment-select"></select>
+              </label>
+            </div>
+            <button id="start-quiz" class="primary-btn wide">Start Quiz</button>
+          </div>
+
+          <div id="question-screen" class="question-screen">
+            <div class="quiz-top">
+              <div>
+                <span id="quiz-mode-label">Practice</span>
+                <strong id="question-counter">Question 1 of 10</strong>
+              </div>
+              <div id="timer" class="timer">00:00</div>
+            </div>
+            <div class="progress-line"><span id="quiz-progress"></span></div>
+            <article class="question-card">
+              <div class="question-tags">
+                <span id="difficulty-pill">Easy</span>
+                <span id="amendment-pill">1st Amendment</span>
+              </div>
+              <h2 id="question-text"></h2>
+              <div id="option-list" class="option-list"></div>
+              <div id="explanation-panel" class="explanation-panel"></div>
+              <div class="quiz-actions">
+                <button id="quit-quiz" class="secondary-btn">Quit</button>
+                <button id="next-question" class="primary-btn">Next</button>
+              </div>
+            </article>
+          </div>
+
+          <div id="results-screen" class="panel results-screen">
+            <h1 id="result-heading">Result</h1>
+            <p id="result-copy"></p>
+            <div id="result-review" class="review-list"></div>
+            <button id="new-round" class="primary-btn wide">New Round</button>
+          </div>
+        </section>
+
+        <section id="progress-view" class="view">
+          <div class="section-title">
+            <div>
+              <p class="kicker">Progress Tracking</p>
+              <h1>Your Study Record</h1>
+            </div>
+            <button id="reset-progress" class="secondary-btn">Reset</button>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card"><span id="progress-correct">0</span><small>Correct</small></article>
+            <article class="metric-card"><span id="progress-incorrect">0</span><small>Incorrect</small></article>
+            <article class="metric-card"><span id="completion-rate">0%</span><small>Completion</small></article>
+            <article class="metric-card"><span id="study-time">0m</span><small>Study Time</small></article>
+          </div>
+          <section class="panel">
+            <h2>Strong Topics</h2>
+            <div id="strong-topics" class="topic-list"></div>
+          </section>
+          <section class="panel">
+            <h2>Weak Topics</h2>
+            <div id="weak-topics" class="topic-list"></div>
+          </section>
+          <section class="panel">
+            <h2>Local Leaderboard</h2>
+            <div id="leaderboard" class="leaderboard"></div>
+          </section>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Mobile navigation">
+        <button class="nav-btn active" data-view="dashboard">Home</button>
+        <button class="nav-btn" data-view="learn">Learn</button>
+        <button class="nav-btn" data-view="quiz">Quiz</button>
+        <button class="nav-btn" data-view="progress">Stats</button>
+      </nav>
+    </div>
+    <script src="./data/amendments-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
