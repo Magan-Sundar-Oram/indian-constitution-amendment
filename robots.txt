@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amendmaster.vercel.app/sitemap.xml
